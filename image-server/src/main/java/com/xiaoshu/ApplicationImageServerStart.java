@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
+/**
+ * 图片服务器启动类
+ * @author Administrator
+ *
+ */
 @SpringBootApplication
 public class ApplicationImageServerStart extends SpringBootServletInitializer {
 

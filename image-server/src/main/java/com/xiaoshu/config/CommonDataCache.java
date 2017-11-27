@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CommonDataCache {
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@PostConstruct
