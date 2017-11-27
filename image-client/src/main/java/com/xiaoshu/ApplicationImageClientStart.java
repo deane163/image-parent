@@ -8,7 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
- * 
+ * The Image client for single image upload and batch images upload
  * @author Administrator
  *
  */

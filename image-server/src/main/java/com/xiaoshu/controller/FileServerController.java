@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  */
 @RestController
-public class FileController {
+public class FileServerController {
 	
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     
