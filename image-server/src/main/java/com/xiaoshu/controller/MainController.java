@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * Monitor the Server status Info
+ * @author ubt
+ *
+ */
 @RestController
 @RequestMapping(value="/main")
 public class MainController {
