@@ -1,6 +1,8 @@
 package com.xiaoshu.controller;
 
-import java.io.File;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xiaoshu.service.FileService;
 
 @RestController
+@Api("File API")
 public class FileClientController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -25,14 +28,16 @@ public class FileClientController {
 	
 	
 	@PostMapping(value="/uploadSingle", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public String postImage(@RequestParam("file") MultipartFile file){
+	@ApiOperation("single file upload")
+	public String postImage(@ApiParam @RequestParam("file") MultipartFile file){
 		logger.info("start upload single file ...");
 		fileService.createNewdFile(file);
 		return null;
 	}
 	
 	@PostMapping(value ="/uploadMultiple", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public String postImages(@RequestParam("file") MultipartFile[] files){
+	@ApiOperation("multiple files upload")
+	public String postImages(@ApiParam @RequestParam("file") MultipartFile[] files){
 		logger.info("start upload multiple files ...");
 		if(files != null && files.length > 0){
 			for(MultipartFile file : files){

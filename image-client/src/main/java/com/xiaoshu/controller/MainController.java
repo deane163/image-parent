@@ -1,5 +1,7 @@
 package com.xiaoshu.controller;
 
+import io.swagger.annotations.Api;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import com.alibaba.fastjson.JSON;
  */
 @RestController
 @RequestMapping(value="/main")
+@Api("Monitor API")
 public class MainController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
