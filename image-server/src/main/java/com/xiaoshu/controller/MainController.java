@@ -1,5 +1,8 @@
 package com.xiaoshu.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,11 +22,13 @@ import com.alibaba.fastjson.JSON;
  */
 @RestController
 @RequestMapping(value="/main")
+@Api(value="System Monitor API")
 public class MainController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
 		logger.info("start get the server status ...");
 		Map<String,Object> resultMap = new HashMap<>();

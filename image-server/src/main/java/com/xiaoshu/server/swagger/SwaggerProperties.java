@@ -1,4 +1,4 @@
-package com.xiaoshu.client.swagger;
+package com.xiaoshu.server.swagger;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -46,5 +46,4 @@ public class SwaggerProperties {
 	public void setContactEmail(String contactEmail) {
 		this.contactEmail = contactEmail;
 	}
-
 }
