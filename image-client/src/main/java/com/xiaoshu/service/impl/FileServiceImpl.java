@@ -32,7 +32,6 @@ public class FileServiceImpl implements FileService {
 		fileName = generateNewdFileName(fileName);
 		File outFile = new File(filePath + fileName);
 		try {
-			//create file and trans file to outFile
 			DirMaker.createFile(outFile);
 			file.transferTo(outFile);
 		} catch (IOException e) {
