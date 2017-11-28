@@ -34,7 +34,7 @@ public class FileServerController {
     private ImageUploadService uploadService;
     
     
-    @PostMapping(value = "/uploadSingle",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = {"/uploadSingle","/uploadFile"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value ="for single file upload ..")
     public String uploadFile(@ApiParam("file") @RequestParam("file") MultipartFile file) throws IOException{
     	logger.info("start upload the file ...");
@@ -45,7 +45,7 @@ public class FileServerController {
     	return result;
     }
     
-    @PostMapping(value ="/uploadBatch",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value ={"/uploadBatch","/uploadFiles"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String uploadFiles(@RequestParam("files") MultipartFile[] files){
     	logger.info("start batch upload files ...");
     	//upload the files
