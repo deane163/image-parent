@@ -1,7 +1,10 @@
 package com.xiaoshu.util;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -15,6 +18,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 功能说明：OKHttp 的GET、POST、PUT、DELETE方法
@@ -144,21 +149,30 @@ public class OkHttpRestUtils {
 	 * @param tokenName
 	 * @param tokenStr
 	 * @return
+	 * @throws IOException 
 	 */
-	public static String post(String url,File file, String tokenName, String tokenStr) {
-		try {
-		RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-		RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-				.addFormDataPart("file", file.getName(), fileBody)
-				.build();
-				
-		Request request = new Request.Builder().url(url).post(requestBody).addHeader(tokenName, tokenStr).build();
-		Response response = getClientInstance().newCall(request).execute();
-			return response.body().string();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public static String post(String url,Map<String,Object> params) throws IOException {
+		Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+		if(null != params &&  params.size() > 0){
+			Set<String> keys = params.keySet();
+			for(String key :keys){
+				if(params.get(key) instanceof MultipartFile){
+					RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), ((MultipartFile)params.get(key)).getBytes());
+					builder.addFormDataPart(key, "fileName", fileBody);
+				} else if (params.get(key) instanceof File){
+					RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file2byte((File)params.get(key)) );
+					builder.addFormDataPart(key, "fileName", fileBody);
+				} else if (params.get(key) instanceof String){
+					builder.addFormDataPart(key, (String)params.get(key));
+				} else {
+					builder.addFormDataPart(key, String.valueOf(params.get(key)));
+				}
+			}
 		}
-		return null;
+		RequestBody requestBody = builder.build();		
+		Request request = new Request.Builder().url(url).post(requestBody).build();
+		Response response = getClientInstance().newCall(request).execute();
+		return response.body().string();
 	}
 	
 	/**
@@ -319,4 +333,37 @@ public class OkHttpRestUtils {
 		}
 		return strBuilder.toString();
 	}
+	
+	/**
+	 * File 转 byte[]
+	 * @param file
+	 * @return
+	 */
+	public static byte[] file2byte(File file)
+    {
+        byte[] buffer = null;
+        try
+        {
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] b = new byte[1024];
+            int n;
+            while ((n = fis.read(b)) != -1)
+            {
+                bos.write(b, 0, n);
+            }
+            fis.close();
+            bos.close();
+            buffer = bos.toByteArray();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return buffer;
+    }
 }
