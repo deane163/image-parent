@@ -1,9 +1,15 @@
 package com.xiaoshu.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,12 +33,32 @@ public class MainController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@GetMapping(value="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	private ExecutorService executor = Executors.newFixedThreadPool(1);
+	private final long WAIT_MAX_TIME_SECOND = 10;
+	
+	
+	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
-		logger.info("start get Image client status ...");
-		Map<String,Object> resultMap =  new HashMap<>();
+		logger.info("start monitor the system status...");
+		Callable<Map<String,Object>> call = new Callable<Map<String,Object>>() {
+			Map<String, Object> ret = new HashMap<String, Object>();
+			@Override
+			public Map<String, Object> call() throws Exception {
+				// 检查数据库连接是否正常，将状态值设置到ret中，进行返回
+				return ret;
+			}
+		};
+		Map<String, Object> resultMap =new HashMap<>();
+		Future<Map<String,Object>> future = executor.submit(call);
+		try {
+			resultMap = future.get(WAIT_MAX_TIME_SECOND, TimeUnit.SECONDS); // 任务处理超时时间设为 10 秒，超时直接返回
+		} catch (Exception e) {
+
+		}
+		//根据数据库接口进行判断
 		resultMap.put("code", 200);
-		resultMap.put("status", "success");
-		return JSON.toJSONString(resultMap);
+		resultMap.put("msg", "success");
+		return JSON.toJSONString(resultMap);		
 	}
 }
