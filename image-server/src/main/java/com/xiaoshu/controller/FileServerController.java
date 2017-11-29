@@ -1,6 +1,7 @@
 package com.xiaoshu.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xiaoshu.annotation.Authorization;
 import com.xiaoshu.service.ImageUploadService;
 
 /**
@@ -26,6 +28,7 @@ import com.xiaoshu.service.ImageUploadService;
  */
 @RestController
 @Api(value ="ImageServer for File upload")
+@Authorization
 public class FileServerController {
 	
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -33,8 +36,8 @@ public class FileServerController {
     @Autowired
     private ImageUploadService uploadService;
     
-    
     @PostMapping(value = {"/uploadSingle","/uploadFile"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     @ApiOperation(value ="for single file upload ..")
     public String uploadFile(@ApiParam("file") @RequestParam("file") MultipartFile file) throws IOException{
     	logger.info("start upload the file ...");
@@ -46,6 +49,7 @@ public class FileServerController {
     }
     
     @PostMapping(value ={"/uploadBatch","/uploadFiles"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files){
     	logger.info("start batch upload files ...");
     	//upload the files
