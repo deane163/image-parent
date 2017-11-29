@@ -59,7 +59,6 @@ public class FileServiceImpl implements FileService {
 		}else{
 			return String.valueOf(System.currentTimeMillis())+r;
 		}
-		
 	}
 
 }

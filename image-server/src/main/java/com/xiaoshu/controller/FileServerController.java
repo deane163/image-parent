@@ -49,7 +49,6 @@ public class FileServerController {
     	logger.info("start upload the file ...");
     	//upload the file
     	ServerConfig selector = choose.chooseServer();
-    	System.out.println("===============>" + selector.getIp());
     	Map<String,Object> paramMap = new HashMap<>();
     	paramMap.put("file", file);
     	String result = uploadService.uploadSingleImage(file.getBytes(), paramMap, selector.getIp());
@@ -60,7 +59,7 @@ public class FileServerController {
     @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files){
     	logger.info("start batch upload files ...");
-    	//upload the files
+    	//upload  files
     	return null;
     }
 }
