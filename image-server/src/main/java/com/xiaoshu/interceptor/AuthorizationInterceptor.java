@@ -39,7 +39,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 				&& method.getMethodAnnotation(Authorization.class) == null) {
 			return true;
 		}
-		System.out.println("====start check the Token infomation===>");
+		logger.info("<====start check the Token infomation===>");
 		String token = request.getHeader(Constant.AUTHORIZATION);
 		if (StringUtils.isEmpty(token)) {
 			//无权限访问

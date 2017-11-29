@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaoshu.annotation.Authorization;
+import com.xiaoshu.config.ServerChoose;
+import com.xiaoshu.model.ServerConfig;
 import com.xiaoshu.service.ImageUploadService;
 
 /**
@@ -36,15 +38,21 @@ public class FileServerController {
     @Autowired
     private ImageUploadService uploadService;
     
+    @Autowired
+    private ServerChoose choose;
+    
+    
     @PostMapping(value = {"/uploadSingle","/uploadFile"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     @ApiOperation(value ="for single file upload ..")
     public String uploadFile(@ApiParam("file") @RequestParam("file") MultipartFile file) throws IOException{
     	logger.info("start upload the file ...");
     	//upload the file
+    	ServerConfig selector = choose.chooseServer();
+    	System.out.println("===============>" + selector.getIp());
     	Map<String,Object> paramMap = new HashMap<>();
     	paramMap.put("file", file);
-    	String result = uploadService.uploadSingleImage(file.getBytes(), paramMap, "http://127.0.0.1:8040/image-client");
+    	String result = uploadService.uploadSingleImage(file.getBytes(), paramMap, selector.getIp());
     	return result;
     }
     
