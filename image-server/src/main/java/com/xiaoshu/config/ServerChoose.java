@@ -24,20 +24,28 @@ public class ServerChoose {
 	private Random random = new Random();
 	private int factor;
 	private boolean init = false;
-	/**
-	 * 
-	 */
+	
+	//初始胡服务器配置
 	public synchronized void init(){
+		if(!init){
+			synchronized (ServerChoose.class) {
+				refresh();
+				this.init = true;
+			}
+		}
+	}
+	
+	//刷新服务器配置
+	public synchronized void refresh(){
 		//从数据库中读取所有的服务器信息
 		//servers = findAll();
 		this.factor = 0;
-		logger.info("Initial the ImageServer, The Pools client sizie is =====> {}", servers.size());
+		logger.info("====>Initial the ImageServer, The Pools client sizie is =====> {}", servers.size());
 		for(Iterator<ServerConfig> iter = servers.iterator(); iter.hasNext();){
 			ServerConfig server = iter.next();
 			server.setStartWeight(factor);
 			factor += server.getWeight();
 		}
-		this.init = true;
 	}
 	
 	/**
