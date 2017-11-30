@@ -1,0 +1,55 @@
+server:
+    port: 8080
+    context-path: /image-server
+#spring
+spring:
+  devtools:
+    restart:
+      enabled: true        #这里是为了热部署的，与mybatis是无关的
+
+  #DATABASE CONFIG
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://10.10.1.52:3306/mybatis-plus?useUnicode=true&characterEncoding=utf-8
+    type: com.alibaba.druid.pool.DruidDataSource    #这里是配置druid连接池，以下都是druid的配置信息
+    filters: stat,wall,log4j
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000
+
+#mybatis
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml   #把xml文件放在com.XX.mapper.*中可能会出现找到的问题，这里把他放在resource下的mapper中
+  #\u5B9E\u4F53\u626B\u63CF\uFF0C\u591A\u4E2Apackage\u7528\u9017\u53F7\u6216\u8005\u5206\u53F7\u5206\u9694
+  typeAliasesPackage: com.xiaoshu.entity  #\u8FD9\u91CC\u662F\u5B9E\u4F53\u7C7B\u7684\u4F4D\u7F6E
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+#logging
+logging:
+  level: warn
+
+
+
+##upload file limit Max  size
+multipart:
+  maxFileSize:100Mb
+
+### swagger configuration
+swagger:
+  base-package:com.xiaoshu.controller
+  contact-name:Deane
+  contact-url:http://www.xiaoshu.com
+  contact-email:deane163@126.com

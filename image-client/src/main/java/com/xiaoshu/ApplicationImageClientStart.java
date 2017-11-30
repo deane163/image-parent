@@ -22,8 +22,7 @@ public class ApplicationImageClientStart extends SpringBootServletInitializer {
 	private static Logger logger = LoggerFactory.getLogger(ApplicationImageClientStart.class);
 
 	@Override
-	protected SpringApplicationBuilder configure(
-			SpringApplicationBuilder application) {
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(ApplicationImageClientStart.class);
 	}
 
