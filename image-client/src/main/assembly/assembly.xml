@@ -19,7 +19,7 @@
 			<fileMode>0755</fileMode>
 		</fileSet>
 		<fileSet>
-			<directory>src/main/resource</directory>
+			<directory>target/classes</directory>
 			<outputDirectory>conf</outputDirectory>
 			<includes>
 				<include>*.properties</include>
