@@ -1,0 +1,26 @@
+# server
+server:
+  port: 8040
+  context-path: /image-client
+
+##upload file limit Max  size
+multipart:
+  maxFileSize: 100Mb
+
+### upload file configure
+### attention: different server has different ID
+application:
+  message:
+    images:
+      direction: D:/springboot/image11/
+      root: D:/springboot/
+      id:
+        direction: /images11/
+
+
+### swagger configuration
+swagger:
+  base-package: com.xiaoshu.controller
+  contact-name: Deane
+  contact-url: http://www.xiaoshu.com
+  contact-email: deane163@126.com
