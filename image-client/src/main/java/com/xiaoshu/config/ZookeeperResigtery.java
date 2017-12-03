@@ -23,7 +23,7 @@ public class ZookeeperResigtery {
 		logger.info("=========>  start resgister MyServer to Zookeeper ...===========>");
 		try {
 			//将客户端注册到Zookeeper上面
-			distributeServer.registerZK("server01");
+			distributeServer.registerZK("http://localhost:8040/image-client");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -2,6 +2,7 @@ package com.xiaoshu.config.zookeeper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.zookeeper.WatchedEvent;
@@ -9,10 +10,20 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooKeeper.States;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.xiaoshu.config.ServerChoose;
+import com.xiaoshu.model.ServerConfig;
+
+
+@Component
 public class DistributedClient {  
     static ZooKeeper zkCli = null;  
     volatile static List<String> servers = null;  
+    
+	@Autowired
+	private  ServerChoose choose;
       
     public static void waitUntilConnected(ZooKeeper testZooKeeper, CountDownLatch testLatch) {  
         if(testZooKeeper.getState() == States.CONNECTING) {  
@@ -24,9 +35,9 @@ public class DistributedClient {
         }  
     }  
       
-    static class ConnectedWatcher implements Watcher {  
+   public  class ConnectedWatcher implements Watcher {  
         private CountDownLatch connectedLatch;  
-        ConnectedWatcher(CountDownLatch connectedLatch) {  
+        public ConnectedWatcher(CountDownLatch connectedLatch) {  
             this.connectedLatch = connectedLatch;  /* CountDownLatch实例初始化时设为1即可 */  
         }  
         @Override  
@@ -63,7 +74,7 @@ public class DistributedClient {
     /** 
      * 从zookeeper中获取服务节点信息的具体实现方法 
      */  
-    public static void updateServers() throws Exception {  
+    public  void updateServers() throws Exception {  
         // 构造一个list用来保存服务节点信息  
         List<String> serverList = new ArrayList<String>();  
   
@@ -78,6 +89,17 @@ public class DistributedClient {
             System.out.println("当前在线的服务节点有： " + serverName);  
         }  
         servers = serverList;  
+        
+        CopyOnWriteArrayList<ServerConfig> serverConfigList = new CopyOnWriteArrayList<ServerConfig>();
+		//初始化服务器
+		for(String server:serverList){
+			ServerConfig serverConfig = new ServerConfig();
+			serverConfig.setIp(server);
+			serverConfig.setWeight(100);
+			serverConfigList.add(serverConfig);
+		}
+		choose.setServers(serverConfigList);
+		choose.refresh();
         System.out.println("---------服务节点信息更新完毕---------");  
     }  
   
