@@ -17,6 +17,8 @@ public class ServerConfigInitail {
 	
 	@PostConstruct
 	private void initialServerConfig(){
+		//启动Zookeeper 监听，监听Zookeeper上注册的服务信息
+		
 		ServerConfig server1  = new ServerConfig();
 		server1.setIp("http://127.0.0.1:8040/image-client");
 		server1.setWeight(100);
@@ -31,4 +33,7 @@ public class ServerConfigInitail {
 		choose.setServers(servers);
 		choose.init();
 	}
+	
+	
+	
 }
