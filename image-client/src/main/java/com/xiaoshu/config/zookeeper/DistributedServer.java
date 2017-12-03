@@ -59,7 +59,7 @@ public class DistributedServer {
         /*接下来就可以继续zkCli访问了，避免因为zkCli未连接成功时的访问出错 */  
           
         //利用zk往zookeeper中创建一个临时znode   "/servers/server-randomid"  
-        //create -e /servers/server 123
+        //create  /servers 123
         //String path = zkCli.create(groupNode + "/server", hostname.getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
          if(null == zkCli.exists(groupNode, false)){
         	 zkCli.create(groupNode , "服务".getBytes(),Ids.OPEN_ACL_UNSAFE , CreateMode.PERSISTENT);   
