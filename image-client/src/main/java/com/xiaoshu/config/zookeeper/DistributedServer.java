@@ -9,6 +9,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooKeeper.States;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Component;
  */
 @Component("distributeServer")
 public class DistributedServer {  
+	
+	@Value("${zookeeper.configuration.center}")
+	private String zookeeperCenter;
     //先在zookeeper服务器上创建一个/servers节点  
     private static final String groupNode = "/servers";  
       
@@ -52,7 +56,7 @@ public class DistributedServer {
         CountDownLatch sampleLatch = new CountDownLatch(1);  
         Watcher sampleWatcher = new ConnectedWatcher (sampleLatch);  
         //创建一个zk客户端，定义一个监听器逻辑  
-        ZooKeeper zkCli = new ZooKeeper("127.0.0.1:2181", 2000, sampleWatcher);  
+        ZooKeeper zkCli = new ZooKeeper(zookeeperCenter, 2000, sampleWatcher);  
           
         /* 只有当zkCli链接成功（状态为 SyncConnected)时，此函数调用才结束 */  
          waitUntilConnected(zkCli, sampleLatch);  

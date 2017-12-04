@@ -24,3 +24,8 @@ swagger:
   contact-name: Deane
   contact-url: http://www.xiaoshu.com
   contact-email: deane163@126.com
+  
+### Zookeeper configuration Center
+zookeeper:
+  configuration:
+    center: 127.0.0.1:2181 

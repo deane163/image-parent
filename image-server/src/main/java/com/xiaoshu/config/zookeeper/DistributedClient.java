@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper.States;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.xiaoshu.config.ServerChoose;
@@ -21,6 +24,12 @@ import com.xiaoshu.model.ServerConfig;
 public class DistributedClient {  
     static ZooKeeper zkCli = null;  
     volatile static List<String> servers = null;  
+    
+    //先在zookeeper服务器上创建一个/servers节点  ，防止第一次没有初始化时，启动报错
+    private static final String groupNode = "/servers"; 
+    
+	@Value("${zookeeper.configuration.center}")
+	private String zookeeperCenter;
     
 	@Autowired
 	private  ServerChoose choose;
@@ -61,7 +70,7 @@ public class DistributedClient {
         CountDownLatch sampleLatch = new CountDownLatch(1);  
         Watcher sampleWatcher = new ConnectedWatcher (sampleLatch);  
         // 构造一个zookeeper的客户端  
-        zkCli = new ZooKeeper("127.0.0.1:2181", 2000, sampleWatcher);  
+        zkCli = new ZooKeeper(zookeeperCenter, 2000, sampleWatcher);  
           
         /* 只有当zkCli链接成功（状态为 SyncConnected)时，此函数调用才结束 */  
          waitUntilConnected(zkCli, sampleLatch);  
@@ -78,14 +87,17 @@ public class DistributedClient {
         // 构造一个list用来保存服务节点信息  
         List<String> serverList = new ArrayList<String>();  
   
+        //create  /servers 123 
+         if(null == zkCli.exists(groupNode, false)){
+        	 zkCli.create(groupNode , "服务".getBytes(),Ids.OPEN_ACL_UNSAFE , CreateMode.PERSISTENT);   
+         }
         // 先拿到servers下的子节点名称列表,并对父节点servers注册监听器  
         List<String> children = zkCli.getChildren("/servers", true);  
-//       遍历获取每一个子节点所保存的数据——服务节点信息  
+        //遍历获取每一个子节点所保存的数据——服务节点信息  
         for (String child : children) {  
             byte[] data = zkCli.getData("/servers/" + child, false, null);  
             String serverName = new String(data, "utf-8");  
             serverList.add(serverName);  
-              
             System.out.println("当前在线的服务节点有： " + serverName);  
         }  
         servers = serverList;  

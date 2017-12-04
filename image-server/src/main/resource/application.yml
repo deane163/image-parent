@@ -11,8 +11,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/mybatis-plus?useUnicode=true&characterEncoding=utf-8
+    password: 123456
+    url: jdbc:mysql://10.10.1.52:3306/mybatis-plus?useUnicode=true&characterEncoding=utf-8
     type: com.alibaba.druid.pool.DruidDataSource    #这里是配置druid连接池，以下都是druid的配置信息
     filters: stat,wall,log4j
     maxActive: 20
@@ -53,3 +53,8 @@ swagger:
   contact-name: Deane
   contact-url: http://www.xiaoshu.com
   contact-email: deane163@126.com
+  
+### Zookeeper configuration Center
+zookeeper:
+  configuration:
+    center: 127.0.0.1:2181 
