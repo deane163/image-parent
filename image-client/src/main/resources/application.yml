@@ -29,3 +29,6 @@ swagger:
 zookeeper:
   configuration:
     center: 127.0.0.1:2181 
+  registry:
+    value: http://127.0.0.1:8040/image-client
+    
