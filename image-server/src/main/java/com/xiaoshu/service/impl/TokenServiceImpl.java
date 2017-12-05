@@ -52,7 +52,12 @@ public class TokenServiceImpl implements TokenService {
 		UserToken user = tokenService.selectOne(wrapper);
 		//验证数据库中是否有该Token
 		if(null != user){
-			return true;
+			//判断Token的有效性
+			if(user.getExpiredTime() >= System.currentTimeMillis()){
+				return true;
+			}else{
+				return false;
+			}
 		}
 		return false;
 	}
