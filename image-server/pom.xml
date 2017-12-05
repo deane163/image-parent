@@ -113,6 +113,11 @@
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -161,9 +166,7 @@
 
 		<plugins>
 			<!-- SpringBoot 的基础打包插件 -->
-			<!-- <plugin> 
-					<groupId>org.springframework.boot</groupId> 
-					<artifactId>spring-boot-maven-plugin</artifactId> 
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
 				</plugin> -->
 
 			<plugin>
