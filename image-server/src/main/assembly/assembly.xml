@@ -26,6 +26,7 @@
 				<include>*.conf</include>
 				<include>*.xml</include>
 				<include>*.yml</include>
+				<include>mapper/*.xml</include>
 			</includes>
 			<fileMode>0644</fileMode>
 		</fileSet>
