@@ -1,6 +1,7 @@
 package com.xiaoshu.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.xiaoshu.annotation.Authorization;
 import com.xiaoshu.config.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
@@ -32,6 +34,7 @@ import com.xiaoshu.model.ServerConfig;
 @RestController
 @RequestMapping(value="/main")
 @Api(value="System Monitor API")
+@Authorization
 public class MainController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -44,6 +47,7 @@ public class MainController {
 	
 	
 	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
 		logger.info("start monitor the system status...");
@@ -69,6 +73,7 @@ public class MainController {
 	}
 	
 	@GetMapping(value="/servers",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value = "Servers list")
 	public String getServerList(){
 		logger.info("start get the list of servers ...");

@@ -5,13 +5,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.xiaoshu.annotation.Authorization;
 import com.xiaoshu.config.Constant;
+import com.xiaoshu.service.TokenService;
 
 /**
  * 拦截器操作，对SpringMVC 进行拦截操作
@@ -23,6 +24,9 @@ import com.xiaoshu.config.Constant;
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
 	private Logger logger = LoggerFactory.getLogger(AuthorizationInterceptor.class);
+	
+	@Autowired
+	private TokenService tokenService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -41,7 +45,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 		}
 		logger.info("<====start check the Token infomation===>");
 		String token = request.getHeader(Constant.AUTHORIZATION);
-		if (StringUtils.isEmpty(token)) {
+		if (!tokenService.checkToken(token)) {
 			//无权限访问
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 			return false;
