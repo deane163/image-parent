@@ -4,7 +4,7 @@
 
 	<groupId>com.xiaoshu</groupId>
 	<artifactId>image-parent</artifactId>
-	<version>0.0.1.20171125-Base</version>
+	<version>0.0.1.20171206-Base</version>
 	<packaging>pom</packaging>
 
 	<name>image-parent</name>

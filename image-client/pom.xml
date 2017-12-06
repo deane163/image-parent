@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.xiaoshu</groupId>
 		<artifactId>image-parent</artifactId>
-		<version>0.0.1.20171125-Base</version>
+		<version>0.0.1.20171206-Base</version>
 	</parent>
 	<artifactId>image-client</artifactId>
 	<name>image-client</name>
