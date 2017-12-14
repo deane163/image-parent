@@ -70,7 +70,7 @@ public class MonitorController {
 	private final long WAIT_MAX_TIME_SECOND = 10;
 	
 	
-	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value ="/heartCheck",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
