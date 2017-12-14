@@ -41,7 +41,7 @@ import com.xiaoshu.model.ServerConfig;
  * 　　　┗┻┛　┗┻┛
  *
  *
- * @Description : 
+ * @Description : Zookeeper客户注册管理
  * ---------------------------------
  * @Author : deane.administrator
  * @Date : Create in 2017年12月14日下午6:48:32

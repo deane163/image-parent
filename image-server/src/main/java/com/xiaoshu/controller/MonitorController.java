@@ -27,15 +27,39 @@ import com.xiaoshu.config.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
 /**
- * Monitor the Server status Info
- * @author administrator
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description :  Monitor the Server status Info
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月14日下午7:46:42
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @RestController
-@RequestMapping(value="/main")
+@RequestMapping(value="/system")
 @Api(value="System Monitor API")
 @Authorization
-public class MainController {
+public class MonitorController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -76,7 +100,7 @@ public class MainController {
 	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value = "Servers list")
 	public String getServerList(){
-		logger.info("start get the list of servers ...");
+		logger.info("start 检查已经注册的 Image-client 信息...");
 		CopyOnWriteArrayList<ServerConfig> serversList = servers.getServers();
 		return JSON.toJSONString(serversList);
 	}
