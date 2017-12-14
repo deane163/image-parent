@@ -19,7 +19,35 @@ import org.springframework.stereotype.Component;
 import com.xiaoshu.config.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
-
+/**
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ *
+ * @Description : 
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月14日下午6:48:32
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
+ */
 @Component
 public class DistributedClient {  
     static ZooKeeper zkCli = null;  
