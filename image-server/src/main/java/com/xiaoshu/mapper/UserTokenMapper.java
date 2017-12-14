@@ -1,7 +1,11 @@
 package com.xiaoshu.mapper;
 
-import com.xiaoshu.entity.UserToken;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.xiaoshu.entity.UserToken;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface UserTokenMapper extends BaseMapper<UserToken> {
 
+	public List<UserToken> selectByNamePassword(@Param("name") String name,@Param("password") String passwrod);
 }
