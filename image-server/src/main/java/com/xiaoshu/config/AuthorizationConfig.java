@@ -9,8 +9,32 @@ import com.xiaoshu.interceptor.AuthorizationInterceptor;
 
 /**
  * 
- * @author administrator
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description : 配置
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月15日下午4:36:32
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @Configuration
 public class AuthorizationConfig extends WebMvcConfigurerAdapter{
