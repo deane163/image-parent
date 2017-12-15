@@ -11,9 +11,33 @@ import org.springframework.stereotype.Component;
 import com.xiaoshu.model.ServerConfig;
 
 /**
- * 服务器选择
- * @author administrator
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description : 服务器选择,服务器信息动态获取
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月15日下午4:43:17
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @Component
 public class ServerChoose {

@@ -7,13 +7,33 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 
 /**
- * @title 
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
- * @author Young
  *
- * @date 2017年6月21日下午5:01:05
- *
- * Copyright (C)2012-2017 深圳优必选科技 All rights reserved.
+ * @Description : 
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月15日下午4:46:16
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 public class WrapperUtil {
 
