@@ -132,7 +132,7 @@ public class DistributedClient {
         
         CopyOnWriteArrayList<ServerConfig> serverConfigList = new CopyOnWriteArrayList<ServerConfig>();
 		//初始化服务器
-		for(String server:serverList){
+		for(String server : serverList){
 			ServerConfig serverConfig = new ServerConfig();
 			serverConfig.setIp(server);
 			serverConfig.setWeight(100);

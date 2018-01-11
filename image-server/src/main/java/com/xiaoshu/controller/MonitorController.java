@@ -88,7 +88,7 @@ public class MonitorController {
 		try {
 			resultMap = future.get(WAIT_MAX_TIME_SECOND, TimeUnit.SECONDS); // 任务处理超时时间设为 10 秒，超时直接返回
 		} catch (Exception e) {
-
+			logger.info("任务处理超时，记录异常日志");
 		}
 		//根据数据库接口进行判断
 		resultMap.put("code", 200);
