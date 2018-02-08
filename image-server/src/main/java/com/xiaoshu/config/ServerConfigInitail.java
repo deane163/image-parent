@@ -41,8 +41,6 @@ public class ServerConfigInitail {
 
 	@Autowired
 	private DistributedClient distributeClient;
-	@Autowired
-	private ServerChoose choose;
 
 	@PostConstruct
 	private void initialServerConfig() {

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.xiaoshu.annotation.Authorization;
-import com.xiaoshu.config.ServerChoose;
+import com.xiaoshu.config.impl.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
 /**

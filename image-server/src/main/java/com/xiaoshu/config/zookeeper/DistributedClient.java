@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.xiaoshu.config.ServerChoose;
+import com.xiaoshu.config.impl.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
 /**

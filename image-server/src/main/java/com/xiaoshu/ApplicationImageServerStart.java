@@ -1,6 +1,5 @@
 package com.xiaoshu;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +39,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  * 
  * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
-@MapperScan("com.xiaoshu.mapper*")
 @SpringBootApplication
 public class ApplicationImageServerStart extends SpringBootServletInitializer {
 
