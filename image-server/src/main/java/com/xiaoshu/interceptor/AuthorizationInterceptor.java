@@ -15,7 +15,7 @@ import com.xiaoshu.config.Constant;
 import com.xiaoshu.service.TokenService;
 
 /**
- * 拦截器操作，对SpringMVC 进行拦截操作
+ * 拦截器操作，对SpringMVC 进行拦截操作,验证Token是否合法
  * 
  * @author Administrator
  *

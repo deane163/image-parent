@@ -13,10 +13,35 @@ import com.xiaoshu.entity.UserToken;
 import com.xiaoshu.service.TokenService;
 import com.xiaoshu.service.UserTokenService;
 import com.xiaoshu.util.WrapperUtil;
+
 /**
  * 
- * @author administrator
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description : 
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月15日下午4:44:52
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @Component
 public class TokenServiceImpl implements TokenService {

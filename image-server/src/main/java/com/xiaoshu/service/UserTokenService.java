@@ -1,11 +1,13 @@
 package com.xiaoshu.service;
 
-import com.xiaoshu.entity.UserToken;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.xiaoshu.entity.UserToken;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author administrator
@@ -13,5 +15,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface UserTokenService extends IService<UserToken> {
 	
+	public List<UserToken> selectByNamePassword(String name, String passwrod);
+	
 }
-

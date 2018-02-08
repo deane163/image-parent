@@ -22,9 +22,33 @@ import okhttp3.Response;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 功能说明：OKHttp 的GET、POST、PUT、DELETE方法
- * @author Administrator
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description : 功能说明：OKHttp 的GET、POST、PUT、DELETE方法
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月15日下午4:45:14
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 public class OkHttpRestUtils {
 

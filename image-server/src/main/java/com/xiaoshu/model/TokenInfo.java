@@ -1,4 +1,6 @@
-package com.xiaoshu.config;
+package com.xiaoshu.model;
+
+import java.io.Serializable;
 
 /**
  * 
@@ -22,17 +24,48 @@ package com.xiaoshu.config;
  * 　　　┗┻┛　┗┻┛
  *
  *
- * @Description : 常量配置
+ * @Description : 
  * ---------------------------------
  * @Author : deane.administrator
- * @Date : Create in 2017年12月15日下午4:41:43
+ * @Date : Create in 2017年12月14日下午8:23:27
  * 
  * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
-public class Constant {
+public class TokenInfo implements Serializable {
 
-    /**
-     * 存放Authorization的header字段
-     */
-    public static final String AUTHORIZATION = "authorization";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String name;
+
+	private String token;
+
+	private Long expiredTime;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Long getExpiredTime() {
+		return expiredTime;
+	}
+
+	public void setExpiredTime(Long expiredTime) {
+		this.expiredTime = expiredTime;
+	}
+
 }

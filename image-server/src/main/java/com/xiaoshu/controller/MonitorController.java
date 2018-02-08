@@ -27,15 +27,39 @@ import com.xiaoshu.config.ServerChoose;
 import com.xiaoshu.model.ServerConfig;
 
 /**
- * Monitor the Server status Info
- * @author administrator
+ * 
+ * code is far away from bug with the animal protecting
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
  *
+ *
+ * @Description :  Monitor the Server status Info
+ * ---------------------------------
+ * @Author : deane.administrator
+ * @Date : Create in 2017年12月14日下午7:46:42
+ * 
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @RestController
-@RequestMapping(value="/main")
+@RequestMapping(value="/system")
 @Api(value="System Monitor API")
 @Authorization
-public class MainController {
+public class MonitorController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -46,7 +70,7 @@ public class MainController {
 	private final long WAIT_MAX_TIME_SECOND = 10;
 	
 	
-	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value ="/heartCheck",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
@@ -64,7 +88,7 @@ public class MainController {
 		try {
 			resultMap = future.get(WAIT_MAX_TIME_SECOND, TimeUnit.SECONDS); // 任务处理超时时间设为 10 秒，超时直接返回
 		} catch (Exception e) {
-
+			logger.info("任务处理超时，记录异常日志");
 		}
 		//根据数据库接口进行判断
 		resultMap.put("code", 200);
@@ -76,7 +100,7 @@ public class MainController {
 	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value = "Servers list")
 	public String getServerList(){
-		logger.info("start get the list of servers ...");
+		logger.info("start 检查已经注册的 Image-client 信息...");
 		CopyOnWriteArrayList<ServerConfig> serversList = servers.getServers();
 		return JSON.toJSONString(serversList);
 	}

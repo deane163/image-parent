@@ -29,12 +29,12 @@ import java.lang.annotation.Target;
  * 　　　┗┻┛　┗┻┛
  *
  *
- * @Description : 
+ * @Description : 认证的Authorization注解
  * ---------------------------------
  * @Author : deane.administrator
- * @Date : Create in 2018年1月11日上午11:32:38
+ * @Date : Create in 2017年12月14日下午6:49:03
  * 
- * Copyright (C)2013-2018 小树盛凯科技 All rights reserved.
+ * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @Target({TYPE, METHOD})
 @Retention(RetentionPolicy.RUNTIME)
