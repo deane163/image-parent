@@ -40,5 +40,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Authorization {
 	
-	String value();
+	String value() default "";
 }
