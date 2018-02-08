@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -59,6 +60,7 @@ import com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS;
  * @Date : Create in 2017/9/19 13:54
  */
 @Configuration
+@MapperScan("com.xiaoshu.mapper*")
 @EnableConfigurationProperties(MybatisProperties.class)
 public class MybatisPlusConfig {
 

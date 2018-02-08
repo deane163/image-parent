@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaoshu.annotation.Authorization;
-import com.xiaoshu.config.ServerChoose;
+import com.xiaoshu.config.Choose;
 import com.xiaoshu.model.ServerConfig;
 import com.xiaoshu.service.ImageUploadService;
 
@@ -63,7 +63,7 @@ public class FileServerController {
     private ImageUploadService uploadService;
     
     @Autowired
-    private ServerChoose choose;
+    private Choose choose;
     
     
     @PostMapping(value = {"/uploadSingle","/uploadFile"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
