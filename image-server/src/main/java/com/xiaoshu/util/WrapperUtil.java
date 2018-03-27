@@ -40,7 +40,7 @@ public class WrapperUtil {
 	public static  <T> Wrapper<T> getWrapper(Class<T> clazz){
 		Wrapper<T> wrapper = new EntityWrapper<T>();
 		Field[] fields  = clazz.getDeclaredFields();
-		for(Field field:fields){
+		for(Field field : fields){
 			if(field.isAnnotationPresent(TableLogic.class)){
 				wrapper.isWhere(false);
 			}

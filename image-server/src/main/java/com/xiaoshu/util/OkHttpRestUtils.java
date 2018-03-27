@@ -105,13 +105,10 @@ public class OkHttpRestUtils {
 		return null;
 	}
 
-	
 	/**
 	 * 直接进行文件的上传操作
 	 * @param url
 	 * @param file
-	 * @param tokenName
-	 * @param tokenStr
 	 * @return
 	 */
 	public static String post(String url,File file) {
@@ -129,13 +126,13 @@ public class OkHttpRestUtils {
 		}
 		return null;
 	}
-	
+
+
 	/**
 	 * 直接进行Map信息
 	 * @param url
 	 * @param file
-	 * @param tokenName
-	 * @param tokenStr
+	 * @param params
 	 * @return
 	 */
 	public static String post(String url,byte[] file, Map<String,Object> params) {
@@ -165,15 +162,13 @@ public class OkHttpRestUtils {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 直接进行文件的上传操作
 	 * @param url
-	 * @param file
-	 * @param tokenName
-	 * @param tokenStr
+	 * @param params
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static String post(String url,Map<String,Object> params) throws IOException {
 		Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -198,13 +193,11 @@ public class OkHttpRestUtils {
 		Response response = getClientInstance().newCall(request).execute();
 		return response.body().string();
 	}
-	
+
 	/**
 	 * HTTP PUT 更新数据操作，不需要Token认证
 	 * @param url
 	 * @param json
-	 * @param tokenName
-	 * @param tokenString
 	 * @return
 	 */
 	public static String put(String url,String json) {
@@ -249,13 +242,11 @@ public class OkHttpRestUtils {
 		
 		return null;
 	}
-	
+
 	/**
 	 * HTTP DELETE 删除数据操作,不需要Token认证
 	 * @param url
 	 * @param paramsMap
-	 * @param tokenName
-	 * @param tokenString
 	 * @return
 	 */
 	public static String delete(String url,Map<String ,Object> paramsMap){
