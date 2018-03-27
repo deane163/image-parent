@@ -42,7 +42,11 @@ public class AuthorizationConfig extends WebMvcConfigurerAdapter{
 	
 	@Autowired
 	private AuthorizationInterceptor authorizationInterceptor;
-	
+
+	/**
+	 * 添加接口调用的拦截器
+	 * @param registry
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authorizationInterceptor);

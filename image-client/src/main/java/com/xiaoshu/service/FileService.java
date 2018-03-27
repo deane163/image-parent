@@ -11,8 +11,6 @@ public interface FileService {
 
 	/**
 	 * save image to locate Direction
-	 * 
-	 * @param fileName
 	 * @param file
 	 * @return
 	 */

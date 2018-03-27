@@ -45,7 +45,7 @@ public class MainController {
 			Map<String, Object> ret = new HashMap<String, Object>();
 			@Override
 			public Map<String, Object> call() throws Exception {
-				// 检查数据库连接是否正常，将状态值设置到ret中，进行返回
+				//-- 检查数据库连接是否正常，将状态值设置到ret中，进行返回
 				return ret;
 			}
 		};
