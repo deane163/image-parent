@@ -32,7 +32,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  * 　　　┗┻┛　┗┻┛
  *
  *
- * @Description :  图片服务器启动类，负责上传的操作
+ * @Description :  图片服务器启动类，负责上传的操作，根据负载均衡策略，上传图片到不同的Image-client
  * ---------------------------------
  * @Author : deane.administrator
  * @Date : Create in 2017年12月15日下午4:36:05
