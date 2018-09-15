@@ -1,6 +1,7 @@
 package com.xiaoshu.config.zookeeper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
@@ -9,9 +10,11 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
-import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooKeeper.States;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -53,6 +56,7 @@ public class DistributedClient {
     static ZooKeeper zkCli = null;  
     volatile static List<String> servers = null;  
     
+    private final static Logger logger = LoggerFactory.getLogger(DistributedClient.class);
     //先在zookeeper服务器上创建一个/servers节点  ，防止第一次没有初始化时，启动报错
     private static final String groupNode = "/servers"; 
     
@@ -67,7 +71,7 @@ public class DistributedClient {
             try {  
                 testLatch.await();  
             } catch (InterruptedException err) {  
-                System.out.println("Latch exception");  
+            	logger.error("Latch exception message: {}",err.getMessage());
             }  
         }  
     }  
@@ -99,7 +103,6 @@ public class DistributedClient {
         Watcher sampleWatcher = new ConnectedWatcher (sampleLatch);  
         // 构造一个zookeeper的客户端  
         zkCli = new ZooKeeper(zookeeperCenter, 2000, sampleWatcher);  
-          
         /* 只有当zkCli链接成功（状态为 SyncConnected)时，此函数调用才结束 */  
          waitUntilConnected(zkCli, sampleLatch);  
         /*接下来就可以继续zkCli访问了，避免因为zkCli未连接成功时的访问出错 */  
@@ -126,10 +129,9 @@ public class DistributedClient {
             byte[] data = zkCli.getData("/servers/" + child, false, null);  
             String serverName = new String(data, "utf-8");  
             serverList.add(serverName);  
-            System.out.println("当前在线的服务节点有： " + serverName);  
+            logger.info("====> 当前在线的服务节点有：{} ", serverName);
         }  
         servers = serverList;  
-        
         CopyOnWriteArrayList<ServerConfig> serverConfigList = new CopyOnWriteArrayList<ServerConfig>();
 		//初始化服务器
 		for(String server : serverList){
@@ -140,14 +142,14 @@ public class DistributedClient {
 		}
 		choose.setServers(serverConfigList);
 		choose.refresh();
-        System.out.println("---------服务节点信息更新完毕---------");  
+		logger.info("---------服务节点信息更新完毕----客户端节点个数为：{}", serverList.size());
     }  
   
     /** 
      * 模拟客户端程序的业务功能 
      */  
     public void handle() throws Exception {  
-        System.out.println("客户端开始处理自己的业务功能.......");  
+        logger.info("客户端开始处理自己的业务功能....... on date:{}",new Date());
         Thread.sleep(Long.MAX_VALUE);  
     }  
   
@@ -155,7 +157,6 @@ public class DistributedClient {
         // 获取服务器列表  
         DistributedClient distributedClient = new DistributedClient();  
         distributedClient.getOnlineServers();  
-  
         // 处理自己的业务功能  
         distributedClient.handle();  
     }  

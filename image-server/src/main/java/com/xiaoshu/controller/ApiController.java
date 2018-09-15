@@ -72,7 +72,7 @@ public class ApiController {
 		TokenInfo token = new TokenInfo();
 		if(StringUtils.isEmpty(name) || StringUtils.isEmpty(password)){
 			//后面对异常做统一处理，此处先抛出此异常信息
-			throw new RuntimeException("参数传递错误");
+			throw new RuntimeException("参数传递错误 please check name");
 		}
 		
 		List<UserToken> users = userTokenService.selectByNamePassword(name, password);
