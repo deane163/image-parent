@@ -1,7 +1,10 @@
 package com.xiaoshu.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 负载文件的上传操作
@@ -18,7 +21,7 @@ public interface ImageUploadService {
 	 * @param fileByte
 	 * @return
 	 */
-	public String uploadSingleImage(byte[] file, Map<String, Object> paramMap, String serverIp);
+	public String uploadSingleImage(MultipartFile file, Map<String, Object> paramMap, String serverIp) throws IOException;
 
 	/**
 	 * 批量上传文件到图片服务器上

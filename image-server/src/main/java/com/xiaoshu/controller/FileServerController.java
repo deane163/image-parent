@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ import com.xiaoshu.service.ImageUploadService;
  * Copyright (C)2013-2017 小树盛凯科技 All rights reserved.
  */
 @RestController
-@Api(value ="ImageServer for File upload")
+@Api(value ="ImageServer for File upload",description ="api for file upload")
 @Authorization
 public class FileServerController {
 	
@@ -70,19 +71,19 @@ public class FileServerController {
     @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     @ApiOperation(value ="for single file upload ..")
     public String uploadFile(@ApiParam("file") @RequestParam("file") MultipartFile file) throws IOException{
-    	logger.info("start upload the file ...");
     	//upload the file
     	ServerConfig selector = choose.chooseServer();
+    	logger.info("start upload file ... on time :{} selector IP is :{}",new Date(), selector.getIp());
     	Map<String,Object> paramMap = new HashMap<>();
     	paramMap.put("file", file);
-    	String result = uploadService.uploadSingleImage(file.getBytes(), paramMap, selector.getIp());
+    	String result = uploadService.uploadSingleImage(file, paramMap, selector.getIp());
     	return result;
     }
     
     @PostMapping(value ={"/uploadBatch","/uploadFiles"},produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
     public String uploadFiles(@RequestParam("files") MultipartFile[] files){
-    	logger.info("start batch upload files ...");
+    	logger.info("start batch upload files ... on time:{}", new Date());
     	//upload  files
     	return null;
     }

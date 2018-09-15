@@ -26,11 +26,9 @@ public class FileServiceImpl implements FileService {
 	private String filePath ;
 	
 	@Override
-	public String createNewdFile(MultipartFile file) {
-		logger.info("save new file into local disk ...");
-		String fileName = file.getName();
-		fileName = generateNewdFileName(fileName);
-		File outFile = new File(filePath + fileName);
+	public String createNewdFile(MultipartFile file, String fileName) {
+		logger.info("save new file into local disk ... file name:{}", fileName);
+		File outFile = new File(filePath + generateNewdFileName(fileName));
 		try {
 			DirMaker.createFile(outFile);
 			file.transferTo(outFile);

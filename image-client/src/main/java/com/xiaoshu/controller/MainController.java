@@ -3,6 +3,7 @@ package com.xiaoshu.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -28,21 +29,21 @@ import com.alibaba.fastjson.JSON;
  */
 @RestController
 @RequestMapping(value="/main")
-@Api("Monitor API")
+@Api(value = "Monitor API",description ="monitor Api interface")
 public class MainController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private ExecutorService executor = Executors.newFixedThreadPool(1);
-	private final long WAIT_MAX_TIME_SECOND = 10;
+	public final long WAIT_MAX_TIME_SECOND = 10;
 	
 	
 	@GetMapping(value ="/status",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
-		logger.info("start monitor the system status...");
+		logger.info("start monitor the system status...on time:{}",new Date());
 		Callable<Map<String,Object>> call = new Callable<Map<String,Object>>() {
-			Map<String, Object> ret = new HashMap<String, Object>();
+			Map<String, Object> ret = new HashMap<>();
 			@Override
 			public Map<String, Object> call() throws Exception {
 				// 检查数据库连接是否正常，将状态值设置到ret中，进行返回

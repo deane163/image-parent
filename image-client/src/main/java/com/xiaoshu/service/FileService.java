@@ -16,7 +16,7 @@ public interface FileService {
 	 * @param file
 	 * @return
 	 */
-	public String createNewdFile(MultipartFile file);
+	public String createNewdFile(MultipartFile file,String fileName);
 
 	/**
 	 * 

@@ -47,7 +47,6 @@ public class UserTokenServiceImpl extends ServiceImpl<UserTokenMapper, UserToken
 	
 	@Override
 	public List<UserToken> selectByNamePassword(String name, String passwrod) {
-		// TODO Auto-generated method stub
 		return userTokenMapper.selectByNamePassword(name, passwrod);
 	}
 	

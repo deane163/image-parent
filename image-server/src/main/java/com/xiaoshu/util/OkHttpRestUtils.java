@@ -142,7 +142,7 @@ public class OkHttpRestUtils {
 		try {
 			RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
 			Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-			builder.addFormDataPart("file", "fileName", fileBody);
+			builder.addFormDataPart("file", "file", fileBody);
 			if(params.size() > 0){
 				Set<String> keys = params.keySet();
 				for(String key:keys){
@@ -179,7 +179,7 @@ public class OkHttpRestUtils {
 		Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
 		if(null != params &&  params.size() > 0){
 			Set<String> keys = params.keySet();
-			for(String key :keys){
+			for(String key : keys){
 				if(params.get(key) instanceof MultipartFile){
 					RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), ((MultipartFile)params.get(key)).getBytes());
 					builder.addFormDataPart(key, "fileName", fileBody);

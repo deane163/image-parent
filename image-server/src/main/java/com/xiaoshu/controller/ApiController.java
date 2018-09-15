@@ -57,7 +57,7 @@ import com.xiaoshu.service.UserTokenService;
 
 @RestController
 @RequestMapping(value ="/api")
-@Api("API Interface")
+@Api(value = "API Interface",description ="获取凭证接口服务")
 public class ApiController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -66,9 +66,9 @@ public class ApiController {
 	private UserTokenService userTokenService;
 	
 	@GetMapping(value ="/token", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation("获得Token凭据")
+	@ApiOperation(value = "获得Token凭据")
 	public TokenInfo getUserToken(@ApiParam @RequestParam("name") String name,@ApiParam @RequestParam("password") String password){
-		logger.info("根据用户名密码，获得Token信息");
+		logger.info("根据用户名密码，获得Token信息  name:{} and password :{}",name, password);
 		TokenInfo token = new TokenInfo();
 		if(StringUtils.isEmpty(name) || StringUtils.isEmpty(password)){
 			//后面对异常做统一处理，此处先抛出此异常信息
