@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xiaoshu.service.FileService;
 
 @RestController
-@Api("File API")
+@Api(value = "File API",description ="file upload Api Interface")
 public class FileClientController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -29,19 +29,19 @@ public class FileClientController {
 	
 	@PostMapping(value="/uploadSingle", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiOperation("single file upload")
-	public String postImage(@ApiParam @RequestParam("file") MultipartFile file){
-		logger.info("start upload single file ...");
-		fileService.createNewdFile(file);
+	public String postImage(@ApiParam @RequestParam("file") MultipartFile file, @ApiParam("fileName") String fileName){
+		logger.info("start upload single file ... file name :{}", fileName);
+		fileService.createNewdFile(file,fileName);
 		return null;
 	}
 	
 	@PostMapping(value ="/uploadMultiple", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiOperation("multiple files upload")
 	public String postImages(@ApiParam @RequestParam("file") MultipartFile[] files){
-		logger.info("start upload multiple files ...");
+		logger.info("start upload multiple files ...file.length :{}" , files.length);
 		if(files != null && files.length > 0){
 			for(MultipartFile file : files){
-				fileService.createNewdFile(file);
+				fileService.createNewdFile(file,file.getOriginalFilename());
 			}
 		}
 		

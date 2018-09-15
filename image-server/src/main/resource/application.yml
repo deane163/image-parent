@@ -1,6 +1,6 @@
 server:
-    port: 8080
-    context-path: /image-server
+    port: 80
+#context-path: /image-server
 #spring
 spring:
   devtools:

@@ -1,5 +1,7 @@
 package com.xiaoshu;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -50,7 +52,7 @@ public class ApplicationImageServerStart extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
-		logger.info("start The Image Server ...");
+		logger.info("start The Image Server on date:{}...",new Date());
 		SpringApplication.run(ApplicationImageServerStart.class, args);
 	}
 	

@@ -1,5 +1,7 @@
 package com.xiaoshu.interceptor;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,7 +45,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 				&& method.getMethodAnnotation(Authorization.class) == null) {
 			return true;
 		}
-		logger.info("<====start check the Token infomation===>");
+		logger.info("<====start check the Token infomation===> on time: {}",new Date());
 		String token = request.getHeader(Constant.AUTHORIZATION);
 		if (!tokenService.checkToken(token)) {
 			//无权限访问

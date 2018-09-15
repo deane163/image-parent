@@ -1,5 +1,7 @@
 package com.xiaoshu;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +29,7 @@ public class ApplicationImageClientStart extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
-		logger.info("start The Image client ...");
+		logger.info("start The Image client ... on date:{}",new Date());
 		SpringApplication.run(ApplicationImageClientStart.class, args);
 	}
 

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -57,7 +58,7 @@ import com.xiaoshu.model.ServerConfig;
  */
 @RestController
 @RequestMapping(value="/system")
-@Api(value="System Monitor API")
+@Api(value="System Monitor API",description ="monitor api interface")
 @Authorization
 public class MonitorController {
 	
@@ -74,9 +75,9 @@ public class MonitorController {
 	@ApiImplicitParam(name="authorization" ,value="token",dataType ="String",paramType ="header")
 	@ApiOperation(value ="Server Status")
 	public String getServerStatus(){
-		logger.info("start monitor the system status...");
+		logger.info("start monitor the system status... on date:{}",new Date());
 		Callable<Map<String,Object>> call = new Callable<Map<String,Object>>() {
-			Map<String, Object> ret = new HashMap<String, Object>();
+			Map<String, Object> ret = new HashMap<>();
 			@Override
 			public Map<String, Object> call() throws Exception {
 				// 检查数据库连接是否正常，将状态值设置到ret中，进行返回
@@ -88,7 +89,7 @@ public class MonitorController {
 		try {
 			resultMap = future.get(WAIT_MAX_TIME_SECOND, TimeUnit.SECONDS); // 任务处理超时时间设为 10 秒，超时直接返回
 		} catch (Exception e) {
-			logger.info("任务处理超时，记录异常日志");
+			logger.info("任务处理超时，记录异常日志 on time :{}" ,new Date());
 		}
 		//根据数据库接口进行判断
 		resultMap.put("code", 200);
